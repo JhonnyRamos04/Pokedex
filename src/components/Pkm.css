@@ -1,0 +1,31 @@
+.pkm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.pkm-types {
+    background-color: #fff;
+    width: 100px;
+    height: 20px;
+    border-radius: 2px;
+    color: #000;
+    font-size: 15px;
+    text-align: center;
+    padding: 2px;
+    margin: 0;
+}
+
+.pkm-id-name {
+    display: flex;
+    gap: 5px;
+}
+
+.pkm-alltypes {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+}
