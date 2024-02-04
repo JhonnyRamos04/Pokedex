@@ -7,11 +7,11 @@ export const Pkm = ({ pkm }) => {
 
     return (
         <div>
-            <div className="pkm">
-                <img className="pkm-sprite" src={`${pkmSprite}`} alt="PkmSprite" />
+            <div className="pkm flex flex-col flex-wrap">
+                <img className="size-32" src={`${pkmSprite}`} alt="PkmSprite" />
                 <div className="pkm-id-name">
-                    <h2 className="pkm-id">{`No.${id}`}</h2>
-                    <h2 className="pkm-name">{`${pkmName.toUpperCase()}`}</h2>
+                    <h2 className="pkm-id font-bold text-2xl">{`No.${id}`}</h2>
+                    <h2 className="pkm-name font-bold text-2xl">{`${pkmName.toUpperCase()}`}</h2>
                     <div className="pkm-alltypes">
                         {
                             pkmTypesSecondary.length > 0 ?

@@ -46,11 +46,11 @@ export const App = () => {
   }
 
   return (
-    <section className='pkm-section'>
+    <section className='pkm-section '>
       <form action="" className='pkm-form' onSubmit={handleSubmit}>
-        <h1>Pokedex</h1>
-        <input type="text" value={search} onChange={handleChange} placeholder='Buscar Pkm con el nombre o numero' />
-        <button type="submit">Buscar</button>
+        <h1 className=' font-bold px-12 py-4'>Pokedex</h1>
+        <input type="text" className=' font-normal my-2 text-lg px-6 py-2 w-full rounded' value={search} onChange={handleChange} placeholder='Numero o nombre' />
+        <button className='text-center px-8 py-2 w-full bg-slate-700 border transition hover:scale-110 hover:border-white' type="submit">Buscar</button>
       </form>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {
