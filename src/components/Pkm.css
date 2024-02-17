@@ -1,38 +1,15 @@
-.pkm {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
+.pkm-types {
+    font-size: 18px;
+    font-weight: 700;
+    color: #232323;
+    padding: 4px 1px;
+    width: 6rem;
+    background: #ffffff60;
+    border: 2px solid #cdf7f8;
+    border-radius: 1rem;
 }
 
 .pkm-abilities {
-    font-weight: 700;
-    margin-top: 6px;
-    text-decoration: underline;
-
-}
-
-.pkm-types {
-    background-color: #fff;
-    width: 80px;
-    height: 30px;
-    border-radius: 10px;
-    color: #000;
-    font-size: 16px;
-    font-weight: 700;
-    text-align: center;
-    padding: 2px;
-    margin: 0;
-}
-
-.pkm-id-name {
-    display: flex;
-    gap: 5px;
-}
-
-.pkm-alltypes {
-    display: flex;
-    gap: 2px;
-    justify-content: center;
-    align-items: center;
+    font-size: 1.25rem;
+    font-weight: 500;
 }

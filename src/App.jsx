@@ -47,14 +47,18 @@ export const App = () => {
 
   return (
     <section className='pkm-section '>
-      <form action="" className='pkm-form' onSubmit={handleSubmit}>
-        <h1 className=' font-bold px-12 py-4'>Pokedex</h1>
-        <input type="text" className=' font-normal my-2 text-lg px-6 py-2 w-full rounded' value={search} onChange={handleChange} placeholder='Numero o nombre' />
-        <button className='text-center px-8 py-2 w-full bg-slate-700 border transition hover:scale-110 hover:border-white' type="submit">Buscar</button>
+      <form action="" className='flex flex-col items-center justify-center' onSubmit={handleSubmit}>
+        <div className='flex justify-center items-center px-12 gap-x-1'>
+          <img src="/PokeEggIcon.png" alt="Egg-pokemon" className='size-10' />
+          <h1 className=' font-bold  py-4'>Pokedex</h1>
+        </div>
+
+        <input type="text" className=' font-normal my-2 text-lg px-8 py-2  rounded' value={search} onChange={handleChange} placeholder='Numero o nombre' />
+        <button className=' flex text-center px-8 py-2 bg-slate-700 border transition hover:scale-110 hover:border-white' type="submit">Buscar</button>
       </form>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {
-        newPkm ? <Pkm pkm={newPkm} /> : <div className='lds-dual-ring'></div>
+        newPkm ? <Pkm pkm={newPkm} /> : <div className='lds-dual-ring mt-12'></div>
       }
 
     </section>
