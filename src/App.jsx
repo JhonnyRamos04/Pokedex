@@ -46,11 +46,11 @@ export const App = () => {
   }
 
   return (
-    <section className='pkm-section '>
+    <section className='pkm-section w-96 md:w-[600px] overflow-hidden'>
       <form action="" className='flex flex-col items-center justify-center' onSubmit={handleSubmit}>
         <div className='flex justify-center items-center px-12 gap-x-1'>
           <img src="/PokeEggIcon.png" alt="Egg-pokemon" className='size-10' />
-          <h1 className=' font-bold  py-4'>Pokedex</h1>
+          <h1 className=' font-bold  py-1'>Pokedex</h1>
         </div>
 
         <input type="text" className=' font-normal my-2 text-lg px-8 py-2  rounded' value={search} onChange={handleChange} placeholder='Numero o nombre' />
