@@ -1,37 +1,37 @@
 import { useEffect, useState } from 'react'
 
+
 export const useEvolve = ({ pkmSpecies }) => {
 
-
-    const [evUrl, setEvUrl] = useState()
     const [newEvolution, setNewEvolution] = useState([])
-    const getSprite = async (pkmName) => {
+
+    const GetSprite = async (pkmName) => {
         try {
             const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pkmName}`);
             if (!response.ok) {
                 throw new Error(`Ocurrió algo son la petición : ${response.status}`);
             }
-            const pokemonData = await response.json();
-            const { sprites } = pokemonData;
-            const spriteUrl = sprites?.other.home?.front_default;
+            const pokemonData = await response.json()
+            const { sprites } = pokemonData
+            const spriteUrl = sprites?.other["official-artwork"].front_default
 
             if (!spriteUrl) {
-                console.warn(`No se encuentra el sprite de: ${pkmName}`);
+                console.warn(`No se encuentra el sprite de: ${pkmName}`)
             } else {
                 return spriteUrl
             }
         } catch (error) {
-            console.error(`Error fetching Pokemon sprite: ${error}`);
+            console.error(`Error fetching Pokemon sprite: ${error}`)
         }
     }
 
-    const getEvolutions = async (ev) => {
+    const GetChainEvolution = async (ev, setEvolution) => {
         const evolutions = []
         let evolutionData = ev
 
         do {
             const evoDetails = evolutionData?.evolution_details[0]
-            const newSprite = await getSprite(evolutionData?.species.name)
+            const newSprite = await GetSprite(evolutionData?.species.name)
 
             evolutions.push({
                 name: evolutionData?.species.name,
@@ -39,12 +39,33 @@ export const useEvolve = ({ pkmSpecies }) => {
                 sprite: newSprite
             });
 
-            evolutionData = evolutionData?.evolves_to[0];
+            evolutionData = evolutionData?.evolves_to[0]
         } while (evolutionData)
 
 
 
-        setNewEvolution(evolutions)
+        setEvolution(evolutions)
+
+    }
+
+    const GetEvolutions = async (chainUrl, GetChainEvolution, setEvolution) => {
+        try {
+            const response = await fetch(chainUrl);
+            if (!response.ok) {
+                throw new Error(`Ocurrió algo son la petición : ${response.status}`);
+            }
+            const evData = await response.json();
+            const { chain } = evData;
+            const evolution = GetChainEvolution(chain, setEvolution)
+
+            if (!chainUrl) {
+                console.warn(`No se encuentra la evolucion`);
+            } else {
+                return evolution
+            }
+        } catch (error) {
+            console.error(`Error fetching Pokemon sprite: ${error}`);
+        }
     }
 
     useEffect(() => {
@@ -53,31 +74,13 @@ export const useEvolve = ({ pkmSpecies }) => {
             .then(res => res.json())
             .then(res => {
                 const { evolution_chain } = res
-                setEvUrl(evolution_chain.url)
+                GetEvolutions(evolution_chain?.url, GetChainEvolution, setNewEvolution)
             })
             .catch(err => {
                 console.error(`Error with url:${err}`)
             })
 
     }, [pkmSpecies])
-
-    useEffect(() => {
-        if (!evUrl) return
-        fetch(evUrl)
-            .then(res => res.json())
-            .then(res => {
-                const { chain } = res
-                getEvolutions(chain)
-            })
-            .catch(err => {
-                console.error(`Error with url:${err}`)
-            })
-    }, [evUrl])
-
-
-    //console.log(newEvolution, "soy yo") hay que reparar esto
-
-
 
 
     return { newEvolution }

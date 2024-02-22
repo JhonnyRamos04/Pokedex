@@ -3,6 +3,7 @@ import './App.css'
 import { Pkm } from './components/Pkm'
 import { useSearch } from './hooks/useSearch'
 import debounce from 'just-debounce-it'
+import { IconSearch } from '@tabler/icons-react'
 
 
 //const pkm = '153'
@@ -50,11 +51,13 @@ export const App = () => {
       <form action="" className='flex flex-col items-center justify-center' onSubmit={handleSubmit}>
         <div className='flex justify-center items-center px-12 gap-x-1'>
           <img src="/PokeEggIcon.png" alt="Egg-pokemon" className='size-10' />
-          <h1 className=' font-bold  py-1'>Pokedex</h1>
+          <h1 className=' font-bold'>Pokedex</h1>
+        </div>
+        <div className='bg-white flex items-center justify-center rounded p-2 mt-3'>
+          <input type="text" className='px-2 w-full text-gray-900 font-semibold text-lg bg-transparent' value={search} onChange={handleChange} placeholder='Numero o nombre' />
+          <button type="submit"><IconSearch color='#000' /></button>
         </div>
 
-        <input type="text" className=' font-normal my-2 text-lg px-8 py-2  rounded' value={search} onChange={handleChange} placeholder='Numero o nombre' />
-        <button className=' flex text-center px-8 py-2 bg-slate-700 border transition hover:scale-110 hover:border-white' type="submit">Buscar</button>
       </form>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {
