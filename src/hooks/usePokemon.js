@@ -7,6 +7,7 @@ export const usePokemon = ({ pkm }) => {
     const [pkmTypes, setPkmTypes] = useState(null)
     const [pkmAbilities, setPkmAbilities] = useState(null)
     const [pkmSpecies, setPkmSpecies] = useState(null)
+    const [pkmStats, setPkmStats] = useState(null)
     const [id, setId] = useState('')
     const [error, setError] = useState(null)
 
@@ -28,6 +29,8 @@ export const usePokemon = ({ pkm }) => {
                 setPkmTypes(types)
                 const { species } = response
                 setPkmSpecies(species)
+                const { stats } = response
+                setPkmStats(stats)
             })
             .catch(err => {
                 console.error(`Error with url:${err}`)
@@ -35,6 +38,6 @@ export const usePokemon = ({ pkm }) => {
             })
     }, [pkm])
 
-    return { pkmName, pkmSprite, pkmAbilities, pkmTypes, id, pkmSpecies, error }
+    return { pkmName, pkmSprite, pkmAbilities, pkmTypes, id, pkmSpecies, error, pkmStats }
 
 }

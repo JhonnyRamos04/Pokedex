@@ -12,29 +12,15 @@ export function PkmInfo({ pkmName, pkmAbilities, pkmTypes, id }) {
             </ul>
             {
                 pkmAbilities &&
-                    pkmAbilities.length > 0 ?
-                    pkmAbilities.length == 1 ?
-                        <div className="pkm-abilities">
-                            <h3>{`Habilidad: ${pkmAbilities[0]?.ability.name}`}</h3>
-                        </div> :
-                        pkmAbilities.length == 2 ?
-                            <div className="pkm-abilities">
-                                <h3>{`Habilidad: ${pkmAbilities[0]?.ability.name}`}</h3>
-                                {
-                                    pkmAbilities[1].is_hidden == true ?
-                                        <p>{`Habilidad oculta: ${pkmAbilities[1]?.ability.name}`}</p> :
-                                        <p>No tiene habilidad oculta</p>
-                                }
-                            </div> :
-                            <div className="pkm-abilities">
-                                <h3>{`Habilidades: ${pkmAbilities[0]?.ability.name}, ${pkmAbilities[1].ability.name}`}</h3>
-                                {
-                                    pkmAbilities[2].is_hidden == true ?
-                                        <p>{`Habilidad oculta: ${pkmAbilities[2]?.ability.name}`}</p> :
-                                        <p>no tiene habilidad oculta</p>
-                                }
-                            </div>
-                    : <p>loading...</p>
+                <ul>
+                    {
+                        pkmAbilities?.map(ability => (
+                            <li key={ability?.ability.url} className="text-lg font-semibold">
+                                <h3>{!ability.is_hidden ? `Habilidad: ${ability?.ability.name}` : `Habilidad Oculta: ${ability?.ability.name}`}</h3>
+                            </li>
+                        ))
+                    }
+                </ul>
             }
         </div>
     )

@@ -53,11 +53,13 @@ export const App = () => {
           <img src="/PokeEggIcon.png" alt="Egg-pokemon" className='size-10' />
           <h1 className=' font-bold'>Pokedex</h1>
         </div>
-        <div className='bg-white flex items-center justify-center rounded p-2 mt-3'>
+        <div className='bg-white flex items-center justify-center rounded p-2 mt-3 mb-2'>
           <input type="text" className='px-2 w-full text-gray-900 font-semibold text-lg bg-transparent' value={search} onChange={handleChange} placeholder='Numero o nombre' />
           <button type="submit"><IconSearch color='#000' /></button>
         </div>
-
+        {
+          search.length <= 0 && <span className='p-2 text-lg font-semibold text-black italic'>Busca un Pokemon por nombre o por indice en la Pokedex</span>
+        }
       </form>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {

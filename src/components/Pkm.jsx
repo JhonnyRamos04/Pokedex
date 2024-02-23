@@ -1,11 +1,12 @@
 import { usePokemon } from "../hooks/usePokemon"
 import { PkmInfo } from "./PkmInfo"
 import { PkmEv } from "./PkmEv"
+import { PkmStats } from "./PkmStats"
 import './Pkm.css'
 
 export const Pkm = ({ pkm }) => {
 
-    const { pkmName, pkmSprite, pkmAbilities, pkmTypes, pkmTypesSecondary, id, pkmSpecies, error } = usePokemon({ pkm })
+    const { pkmName, pkmSprite, pkmAbilities, pkmTypes, pkmTypesSecondary, id, pkmSpecies, error, pkmStats } = usePokemon({ pkm })
 
     return (
         <article className="flex flex-wrap justify-center items-center gap-2">
@@ -23,6 +24,10 @@ export const Pkm = ({ pkm }) => {
                         {
                             pkmSpecies &&
                             <PkmEv pkmSpecies={pkmSpecies} />
+                        }
+                        {
+                            pkmStats &&
+                            <PkmStats stats={pkmStats} />
                         }
                     </>
                     : <span className="text-black text-2xl font-bold mt-4">{error.toUpperCase()}</span>
